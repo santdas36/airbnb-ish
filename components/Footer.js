@@ -74,7 +74,7 @@ export default function Footer() {
               <Instagram />
             </span>
           </p>
-          <p>&copy; 2021 Airbnb, Inc.</p>
+          <p>&copy; 2021 <a href="https://dashsantosh.me" target="_blank" rel="noreferrer">Dash Santosh</a></p>
         </span>
       </div>
     </FooterSection>
@@ -131,7 +131,13 @@ const FooterSection = styled.footer`
       flex-direction: row-reverse;
       align-items: flex-end;
       justify-content: space-between;
-
+      a {
+        margin-left: 0.5rem;
+      }
+      a:hover {
+        text-decoration: underline;
+        color: var(--red);
+      }
       svg {
         height: 1rem;
       }
@@ -151,6 +157,7 @@ const FooterSection = styled.footer`
       }
     }
   }
+
   @media (max-width: 36rem) {
     .footerInner .footer-bottom {
       flex-direction: column;
