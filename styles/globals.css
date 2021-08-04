@@ -1,16 +1,115 @@
-html,
-body {
+*,
+*::before,
+*::after {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  box-sizing: border-box;
 }
 
-a {
+:root {
+  --red: #e0565b;
+  --yellow: #ffffd6;
+  --dark: #484848;
+  --brown: #3f3f1a;
+  --light: #fafafa;
+  --gray: #efefef;
+  --sidePadding: 3rem;
+  --maxWidth: 40%;
+  --containerWidth: 1200px;
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+  background: var(--light);
+  color: var(--dark);
+  line-height: 1.5;
+  -webkit-tap-highlight-color: transparent;
+  font-size: 1rem;
+}
+
+input,
+a,
+button {
+  font-family: inherit;
   color: inherit;
   text-decoration: none;
 }
+::selection {
+  color: var(--light);
+  background: var(--red);
+}
 
-* {
-  box-sizing: border-box;
+.btn {
+  --color: var(--dark);
+  --bgcolor: var(--light);
+  display: inline-block;
+  white-space: nowrap;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color);
+  background: var(--bgcolor);
+  border-radius: 0.66rem;
+  transition: all 0.2s;
+  box-shadow: 0 0.5rem 1.5rem -0.5rem currentColor;
+}
+.btn.btn-dark {
+  --color: var(--light);
+  --bgcolor: var(--dark);
+}
+
+.btn:hover,
+.btn:focus {
+  box-shadow: 0 0 0 2px var(--color), 0 0 0 4px var(--bgcolor);
+}
+.btn:active {
+  transform: scale(0.95);
+}
+
+section:not(.hero) {
+  margin: 3rem var(--sidePadding) 0;
+}
+section:last-of-type {
+  margin-bottom: 3rem;
+}
+section h2 {
+  font-weight: 800;
+  font-size: 1.75rem;
+}
+
+@media (max-width: 36rem) {
+  :root {
+    --sidePadding: 1.5rem;
+    --maxWidth: 100%;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  .btn {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  section h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  html {
+    font-size: 18px;
+  }
+}
+@media (min-width: 75rem) {
+  html {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 81rem) {
+  section:not(.hero) {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
