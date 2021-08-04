@@ -19,7 +19,7 @@ export default function Footer() {
             <li className="lg-hidden">Airbnb for Work</li>
             <li className="lg-hidden">Made possible by Hosts</li>
             <li className="lg-hidden">Careers</li>
-            <li className="lg-hidden">Founders' Letter</li>
+            <li className="lg-hidden">Founders&apos; Letter</li>
           </ul>
         </span>
         <span>
