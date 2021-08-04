@@ -13,14 +13,14 @@ export default function Cards({ title, items, urlPrefix }) {
               <Image
                 width={128}
                 height={128}
-                alt={item.name}
+                alt={item.title}
                 src={urlPrefix + item.img}
                 className="shadow"
               />
               <Image
                 width={256}
                 height={256}
-                alt={item.name}
+                alt={item.title}
                 src={urlPrefix + item.img}
               />
             </div>

@@ -53,7 +53,7 @@ export default function Header() {
 
         <form ref={formRef} className="search">
           <input type="text" placeholder="Where are you going?" />
-          <button>
+          <button aria-label="search places">
             <Search />
             <span>Search</span>
           </button>
