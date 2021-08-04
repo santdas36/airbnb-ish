@@ -48,6 +48,7 @@ const ExploreSection = styled.section`
     align-items: center;
     border-radius: 1rem;
     transition: all 0.2s;
+    cursor: pointer;
     span {
       padding: 0 1.5rem;
       white-space: nowrap;
@@ -104,7 +105,7 @@ const ExploreSection = styled.section`
       scroll-snap-align: start;
     }
     .item:last-of-type {
-      margin-right: 9rem;
+      margin-right: 10rem;
     }
   }
 `;

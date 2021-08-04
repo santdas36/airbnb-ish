@@ -46,7 +46,7 @@ const CardsSection = styled.section`
   .card {
     display: flex;
     flex-direction: column;
-
+    cursor: pointer;
     span {
       margin-top: 0.75rem;
 
