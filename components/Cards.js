@@ -42,6 +42,10 @@ const CardsSection = styled.section`
     gap: 1.5rem;
     margin-bottom: -1.5rem;
     padding: 1.5rem 0;
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+      display: none;
+    }
   }
   .card {
     display: flex;

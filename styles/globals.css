@@ -11,8 +11,9 @@
   --yellow: #ffffd6;
   --dark: #484848;
   --brown: #3f3f1a;
-  --light: #fafafa;
-  --gray: #efefef;
+  --light: #fafafc;
+  --gray: #efeff0;
+  --white: #fff;
   --sidePadding: 3rem;
   --maxWidth: 40%;
   --containerWidth: 1200px;

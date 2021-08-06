@@ -37,7 +37,7 @@ const HeroSection = styled.section`
 
   h1 {
     font-weight: 900;
-    font-size: clamp(2rem, 5.5vw, 3.5rem);
+    font-size: clamp(2rem, 5.5vw, 3.25rem);
     line-height: 1.2;
     margin-bottom: 1.5rem;
   }
