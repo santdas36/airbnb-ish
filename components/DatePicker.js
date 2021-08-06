@@ -151,7 +151,9 @@ const Container = styled.div`
   .rdrDateDisplayWrapper {
     background: none;
   }
-
+  .rdrDayDisabled {
+    background-color: var(--light);
+  }
   .rdrDateDisplayItem {
     border-radius: 99px;
   }
