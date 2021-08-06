@@ -100,6 +100,10 @@ const CardDiv = styled.div`
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
 
+    &::-webkit-scrollbar {
+      display: none;
+      -webkit-appearance: none;
+    }
     .img {
       flex: 0 0 100%;
       padding-bottom: 66.67%;
@@ -142,7 +146,7 @@ const CardDiv = styled.div`
     left: 50%;
     transform: translate(-50%, -2rem);
 
-    ::-webkit-scrollbar {
+    &::-webkit-scrollbar {
       display: none;
       -webkit-appearance: none;
     }
