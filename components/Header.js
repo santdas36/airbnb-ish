@@ -306,7 +306,6 @@ const HeaderSection = styled.header`
   .profile,
   .logo,
   .globe,
-  .headerInner,
   nav {
     display: flex;
     align-items: center;
@@ -315,6 +314,8 @@ const HeaderSection = styled.header`
   .headerInner {
     max-width: var(--containerWidth);
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
   }
 
   & > div {
@@ -392,6 +393,7 @@ const HeaderSection = styled.header`
     position: absolute;
     transform: translate(-50%, 150%);
     left: 50%;
+    top: -1rem;
     background: var(--light);
     padding: 0.5rem;
     border-radius: 99px;
@@ -472,11 +474,15 @@ const HeaderSection = styled.header`
     .overlay {
       display: none;
     }
+    .headerInner {
+      grid-template-columns: 1fr;
+    }
     form {
       position: relative;
       transform: none !important;
       width: 100% !important;
       left: unset;
+      top: 0;
       margin: 0;
       & > input {
         padding: 0 1rem;
@@ -498,8 +504,8 @@ const HeaderSection = styled.header`
     nav {
       display: none;
     }
-    .profile {
-      margin-left: auto;
+    .headerInner {
+      grid-template-columns: 1fr 1fr;
     }
   }
 
