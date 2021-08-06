@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useRef, useEffect, useState } from "react";
 import DatePicker from "./DatePicker";
 import { useMediaQuery } from "@react-hook/media-query";
-import {useRouter} from 'next/router'
+import { useRouter } from "next/router";
 
-export default function Header({placeholder}) {
+export default function Header({ placeholder }) {
   const router = useRouter();
-  
+
   const navRef = useRef(null);
   const headerRef = useRef(null);
   const [scrolled, setScrolled] = useState(false);
@@ -16,37 +16,36 @@ export default function Header({placeholder}) {
   const [inputFocus, setInputFocus] = useState(false);
   const primaryLocationRef = useRef(null);
   const secondaryLocationRef = useRef(null);
-  
+
   const isSmallScreen = useMediaQuery("(max-width: 36rem)");
 
-//form data
+  //form data
 
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState("");
   const [checkInDate, setCheckInDate] = useState(new Date());
   const [checkOutDate, setCheckOutDate] = useState(new Date());
   const [numberOfAdults, setNumberOfAdults] = useState(0);
   const [numberOfChildren, setNumberOfChildren] = useState(0);
-  
 
   const openDatePicker = () => {
     setInputFocus(true);
     document.body.style.overflow = "hidden";
-    setTimeout(()=>{
+    setTimeout(() => {
       if (!isSmallScreen && secondaryLocationRef.current) {
-      secondaryLocationRef.current.focus()
-    }
-    }, 10)
+        secondaryLocationRef.current.focus();
+      }
+    }, 10);
   };
   const closeDatePicker = () => {
     setInputFocus(false);
-    setLocation('');
+    setLocation("");
     setNumberOfChildren(0);
     setNumberOfAdults(0);
     setCheckInDate(new Date());
     setCheckOutDate(new Date());
     document.body.style.overflow = "initial";
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!location) {
@@ -54,17 +53,16 @@ export default function Header({placeholder}) {
       return;
     }
     router.push({
-      pathname: '/search',
+      pathname: "/search",
       query: {
         location: location,
         checkIn: checkInDate.toISOString(),
         checkOut: checkOutDate.toISOString(),
         guests: numberOfChildren + numberOfAdults,
-      }
-    })
-  }
-  
-  
+      },
+    });
+    setTimeout(() => closeDatePicker(), 100);
+  };
 
   useEffect(() => {
     const handleClick = (event) => {
@@ -101,7 +99,7 @@ export default function Header({placeholder}) {
     <HeaderSection
       ref={headerRef}
       className={[
-        scrolled || inputFocus || router.pathname !== '/' ? "scrolled" : null,
+        scrolled || inputFocus || router.pathname !== "/" ? "scrolled" : null,
         inputFocus ? "inputFocus" : null,
       ]}
       navWidth={navWidth}
@@ -135,45 +133,59 @@ export default function Header({placeholder}) {
             placeholder={placeholder ? placeholder : "Where are you going?"}
             onFocus={openDatePicker}
             value={location}
-            onChange={(e)=>setLocation(e.target.value)}
+            onChange={(e) => setLocation(e.target.value)}
             required
           />
-          
-          {inputFocus && <div className='overlay'>
-          
-          <div className='field'>
-          <label for="location">Location</label>
-          <input 
-            id="location"
-            value={location}
-            ref={secondaryLocationRef}
-            onChange={(e)=>setLocation(e.target.value)}
-            placeholder="Where are you going?"/>
-          </div>
-          
-          <div className='field'>
-          <label>Check-in</label>
-          <input disabled placeholder="Add dates" value={checkInDate} />
-          </div>
-          
-          <div className='field'>
-          <label>Check-out</label>
-          <input disabled placeholder="Add dates" value={checkOutDate} />
-          </div>
-          
-          <div className='field'>
-          <label>Guests</label>
-          <span className="guestNumber">
-            {(numberOfChildren || numberOfAdults)
-              ? <p>{numberOfAdults + numberOfChildren} guests</p> 
-              : <p className="empty">Add guests</p>}
-            </span>
-          </div>
-          
-          </div>}
-          <button type="submit"
-          disabled={inputFocus && !(location && checkInDate && checkOutDate && (numberOfAdults || numberOfChildren))}
-          onClick={handleSubmit} aria-label="search places">
+
+          {inputFocus && (
+            <div className="overlay">
+              <div className="field">
+                <label htmlFor="location">Location</label>
+                <input
+                  id="location"
+                  value={location}
+                  ref={secondaryLocationRef}
+                  onChange={(e) => setLocation(e.target.value)}
+                  placeholder="Where are you going?"
+                />
+              </div>
+
+              <div className="field">
+                <label>Check-in</label>
+                <input disabled placeholder="Add dates" value={checkInDate} />
+              </div>
+
+              <div className="field">
+                <label>Check-out</label>
+                <input disabled placeholder="Add dates" value={checkOutDate} />
+              </div>
+
+              <div className="field">
+                <label>Guests</label>
+                <span className="guestNumber">
+                  {numberOfChildren || numberOfAdults ? (
+                    <p>{numberOfAdults + numberOfChildren} guests</p>
+                  ) : (
+                    <p className="empty">Add guests</p>
+                  )}
+                </span>
+              </div>
+            </div>
+          )}
+          <button
+            type="submit"
+            disabled={
+              inputFocus &&
+              !(
+                location &&
+                checkInDate &&
+                checkOutDate &&
+                (numberOfAdults || numberOfChildren)
+              )
+            }
+            onClick={handleSubmit}
+            aria-label="search places"
+          >
             <Search />
             <span>Search</span>
           </button>
@@ -182,10 +194,16 @@ export default function Header({placeholder}) {
           <DatePicker
             className="datepicker"
             close={closeDatePicker}
-            checkInDate={{value: checkInDate, setValue: setCheckInDate}}
-            checkOutDate={{value: checkOutDate, setValue: setCheckOutDate}}
-            numberOfAdults={{value: numberOfAdults, setValue: setNumberOfAdults}}
-            numberOfChildren={{value: numberOfChildren, setValue: setNumberOfChildren}}
+            checkInDate={{ value: checkInDate, setValue: setCheckInDate }}
+            checkOutDate={{ value: checkOutDate, setValue: setCheckOutDate }}
+            numberOfAdults={{
+              value: numberOfAdults,
+              setValue: setNumberOfAdults,
+            }}
+            numberOfChildren={{
+              value: numberOfChildren,
+              setValue: setNumberOfChildren,
+            }}
           />
         )}
 
@@ -213,83 +231,85 @@ const HeaderSection = styled.header`
   z-index: 10;
   transition: background 0.2s, border-bottom 0.2s;
 
-.overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: var(--light);
-  border-radius: 99px;
-  display: flex;
-  align-items: center;
-  left: 0;
-  top: 0;
-  transition: all 0.2s;
-  
-  label, input, .guestNumber {
-    background: none;
-    font-size: 14px;
-    border: none;
-    line-height: 1.5;
-    display: block;
-    color: var(--dark);
-    outline: none;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  input {
+  .overlay {
+    position: absolute;
     width: 100%;
-    font-weight: 700;
-    
-    &::placeholder {
-      color: var(--dark);
-      font-weight: 400;
-      opacity: 0.5;
-    }
-  }
-  .guestNumber {
-    font-weight: 700;
-    .empty {
-      color: var(--dark);
-      font-weight: 400;
-      opacity: 0.5;
-    }
-  }
-  .field {
-    width: 100%;
-    padding: 0.5rem 1.5rem;
-    border-radius: 99px;
     height: 100%;
+    background: var(--light);
+    border-radius: 99px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    transition: background 0.2s;
-    position: relative;
-    
-    & + .field::before {
-      position: absolute;
-      content: "";
-      width: 2px;
-      height: 2rem;
-      background: var(--gray);
-      border-radius: 2px;
-      left: 0;
-      transition: transform 0.2s;
+    align-items: center;
+    left: 0;
+    top: 0;
+    transition: all 0.2s;
+
+    label,
+    input,
+    .guestNumber {
+      background: none;
+      font-size: 14px;
+      border: none;
+      line-height: 1.5;
+      display: block;
+      color: var(--dark);
+      outline: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    &:hover, &:focus-within {
-      background: var(--gray);
+    input {
+      width: 100%;
+      font-weight: 700;
+
+      &::placeholder {
+        color: var(--dark);
+        font-weight: 400;
+        opacity: 0.5;
+      }
     }
-    
-    &:last-of-type {
-      padding-right: 10rem;
+    .guestNumber {
+      font-weight: 700;
+      .empty {
+        color: var(--dark);
+        font-weight: 400;
+        opacity: 0.5;
+      }
+    }
+    .field {
+      width: 100%;
+      padding: 0.5rem 1.5rem;
+      border-radius: 99px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: background 0.2s;
+      position: relative;
+
+      & + .field::before {
+        position: absolute;
+        content: "";
+        width: 2px;
+        height: 2rem;
+        background: var(--gray);
+        border-radius: 2px;
+        left: 0;
+        transition: transform 0.2s;
+      }
+      &:hover,
+      &:focus-within {
+        background: var(--gray);
+      }
+
+      &:last-of-type {
+        padding-right: 10rem;
+      }
     }
   }
-}
-.overlay:hover .field::before,
-.overlay:focus-within .field::before {
-  transform: scale(0);
-}
-
+  .overlay:hover .field::before,
+  .overlay:focus-within .field::before {
+    transform: scale(0);
+  }
 
   .user,
   .profile,
@@ -424,13 +444,13 @@ const HeaderSection = styled.header`
       font-size: 1rem;
       overflow: hidden;
       z-index: 2;
-      
+
       &:hover:not(:disabled) {
         box-shadow: 0 0 0 2px var(--white), 0 0 0 4px var(--red);
       }
-      
+
       &:disabled {
-        opacity: 0.5
+        opacity: 0.5;
       }
     }
     & > button svg {
@@ -440,15 +460,15 @@ const HeaderSection = styled.header`
     }
   }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
-input[type=number] {
-  -moz-appearance: textfield;
-}
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 
   @media (max-width: 36rem) {
     .profile,
@@ -458,8 +478,8 @@ input[type=number] {
       display: none;
     }
     .overlay {
-        display: none;
-      }
+      display: none;
+    }
     form {
       position: relative;
       transform: none !important;
@@ -496,10 +516,10 @@ input[type=number] {
     color: var(--dark);
     border-bottom: 2px solid var(--gray);
 
-.overlay {
-  opacity: 0;
-  pointer-events: none;
-}
+    .overlay {
+      opacity: 0;
+      pointer-events: none;
+    }
 
     nav {
       opacity: 0;

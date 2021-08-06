@@ -1,46 +1,40 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
-export default function NumberInput({name, value, setValue}) {
-return (
-<InputDiv>
-  <label for={name}>{name}</label>
-  <span>
-    <button
-      disabled={value <= 0}
-      onClick={() =>
-        !(value <= 0) && setValue((val) => val - 1)
-      }
-      className="button"
-    >
-      -
-    </button>
-    <input
-      min={0}
-      max={20}
-      value={value}
-      id={name}
-      onChange={(e) => setValue(e.target.value)}
-      type="number"
-      placeholder="Add dates"
-    />
-    <button
-      onClick={() =>
-        !(value >= 20) && setValue((val) => val + 1)
-      }
-      className="button"
-    >
-      +
-    </button>
-  </span>
-</InputDiv>
-
-)
+export default function NumberInput({ name, value, setValue }) {
+  return (
+    <InputDiv>
+      <label htmlFor={name}>{name}</label>
+      <span>
+        <button
+          disabled={value <= 0}
+          onClick={() => !(value <= 0) && setValue((val) => val - 1)}
+          className="button"
+        >
+          -
+        </button>
+        <input
+          min={0}
+          max={20}
+          value={value}
+          id={name}
+          onChange={(e) => setValue(e.target.value)}
+          type="number"
+          placeholder="Add dates"
+        />
+        <button
+          onClick={() => !(value >= 20) && setValue((val) => val + 1)}
+          className="button"
+        >
+          +
+        </button>
+      </span>
+    </InputDiv>
+  );
 }
 const InputDiv = styled.div`
-
-flex: 1;
-display: flex;
-align-items: center;
+  flex: 1;
+  display: flex;
+  align-items: center;
 
   span {
     background: var(--light);
@@ -54,7 +48,8 @@ align-items: center;
     display: block;
     margin-right: 1rem;
   }
-  input, button {
+  input,
+  button {
     background: none;
     border: none;
     font-size: 1rem;
@@ -73,11 +68,10 @@ align-items: center;
     width: 4rem;
   }
 
-@media (max-width: 36rem) {
-span {
-    margin-left: auto;
-    padding: 0.25rem;
+  @media (max-width: 36rem) {
+    span {
+      margin-left: auto;
+      padding: 0.25rem;
+    }
   }
-}
-
-`
+`;

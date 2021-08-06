@@ -78,6 +78,14 @@ section h2 {
   font-size: 1.75rem;
 }
 
+#nprogress .bar {
+  background: var(--red);
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px var(--red), 0 0 5px var(--red);
+}
+
 @media (max-width: 36rem) {
   :root {
     --sidePadding: 1.5rem;
