@@ -32,7 +32,7 @@ export default function SearchResults({
   return (
     <CardDiv>
       <div ref={imagesRef} className="carousel">
-        {imgSrc?.map((url, index) => (
+        {imgSrc.map((url, index) => (
           <ImageComponent key={index} url={url} location={location} />
         ))}
       </div>
