@@ -12,7 +12,6 @@ export default function SearchResults({
   price,
   lat,
 }) {
-  const [loading, setLoading] = useState(true);
   const [liked, setLiked] = useState(false);
   const imagesRef = useRef(null);
   const [currSlide, setCurrSlide] = useState(0);
@@ -34,15 +33,7 @@ export default function SearchResults({
     <CardDiv>
       <div ref={imagesRef} className="carousel">
         {imgSrc?.map((url, index) => (
-          <div key={index} className={`img ${loading ? "loading" : null}`}>
-            <Image
-              layout="fill"
-              alt={location}
-              objectFit="cover"
-              src={`/images/results/${url}`}
-              onLoadingComplete={() => setLoading(false)}
-            />
-          </div>
+          <ImageComponent index={index} url={url} location={location} />
         ))}
       </div>
       {imgSrc?.length > 1 && (
@@ -80,6 +71,22 @@ export default function SearchResults({
   );
 }
 
+const ImageComponent = ({ index, url, location }) => {
+  const [loading, setLoading] = useState(true);
+
+  return (
+    <div key={index} className={`img ${loading ? "loading" : null}`}>
+      <Image
+        layout="fill"
+        alt={location}
+        objectFit="cover"
+        src={`/images/results/${url}`}
+        onLoadingComplete={() => setLoading(false)}
+      />
+    </div>
+  );
+};
+
 const CardDiv = styled.div`
   border-radius: 1rem;
   position: relative;
@@ -93,16 +100,6 @@ const CardDiv = styled.div`
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
 
-    .img {
-      flex: 0 0 100%;
-      padding-bottom: 66.67%;
-      position: relative;
-      scroll-snap-align: start;
-    }
-
-    img {
-      transition: transform 0.2s;
-    }
     &.loading {
       animation: shimmer 2s infinite;
       background: linear-gradient(
@@ -112,6 +109,17 @@ const CardDiv = styled.div`
         #eff1f3 36%
       );
       background-size: 1000px 100%;
+    }
+
+    .img {
+      flex: 0 0 100%;
+      padding-bottom: 66.67%;
+      position: relative;
+      scroll-snap-align: start;
+    }
+
+    img {
+      transition: transform 0.2s;
     }
   }
 
