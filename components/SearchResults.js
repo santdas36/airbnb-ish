@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import Image from "next/image";
 import ResultCard from "./ResultCard";
 import { resultImages } from "../data";
+import { ArrowLeft, ArrowRight } from "react-feather";
 
 export default function SearchResults({ results }) {
   const router = useRouter();
@@ -25,6 +26,17 @@ export default function SearchResults({ results }) {
             <ResultCard {...item} imgSrc={resultImages[index]} key={index} />
           ))}
         </div>
+        
+        <div className="navigation">
+          <button className="prev" aria-label="previous"><ArrowLeft/></button>
+          <span className="active">1</span>
+          <span>2</span>
+          <span>3</span>
+          ...
+          <span>8</span>
+          <span>9</span>
+          <button className="next" aria-label="next"><ArrowRight/></button>
+        </div>
       </div>
     </ResultsDiv>
   );
@@ -32,13 +44,52 @@ export default function SearchResults({ results }) {
 
 const ResultsDiv = styled.section`
   height: fit-content;
-  padding: 7.5rem var(--sidePadding);
+  padding: 7.5rem var(--sidePadding) 3rem;
 
   .inner {
     max-width: var(--containerWidth);
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+  }
+  .navigation {
+    display: flex;
+    padding-top: 1.5rem;
+    align-items: center;
+    button, span {
+      background: var(--gray);
+      border: none;
+      border-radius: 99px;
+      display: grid;
+      place-items: center;
+      width: 3rem;
+      height: 3rem;
+      outline: none;
+      &:hover, &:focus {
+        box-shadow: 0 0 0 1px var(--dark);
+      }
+    }
+    span {
+      width: 2rem;
+      height: 2rem;
+      margin: 0 0.75rem;
+      user-select: none;
+      
+      @media (max-width: 36rem) {
+        display: none;
+      }
+      &.active {
+        background: var(--dark);
+        color: var(--light);
+      }
+    }
+    
+    button.prev {
+      margin-right: auto;
+    }
+    button.next {
+      margin-left: auto;
+    }
   }
   h1 {
     font-weight: 800;
