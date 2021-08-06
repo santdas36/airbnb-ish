@@ -80,7 +80,7 @@ export default function Header({ placeholder }) {
       setNavWidth(navRef.current.offsetWidth);
     }
     else {
-      setNavWidth(480);
+      setNavWidth(400);
     }
   }
 
