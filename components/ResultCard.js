@@ -100,22 +100,22 @@ const CardDiv = styled.div`
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
 
-    &.loading {
-      animation: shimmer 2s infinite;
-      background: linear-gradient(
-        to right,
-        #eff1f3 4%,
-        #e2e2e2 25%,
-        #eff1f3 36%
-      );
-      background-size: 1000px 100%;
-    }
-
     .img {
       flex: 0 0 100%;
       padding-bottom: 66.67%;
       position: relative;
       scroll-snap-align: start;
+
+      &.loading {
+        animation: shimmer 2s infinite;
+        background: linear-gradient(
+          to right,
+          #eff1f3 4%,
+          #e2e2e2 25%,
+          #eff1f3 36%
+        );
+        background-size: 1000px 100%;
+      }
     }
 
     img {
