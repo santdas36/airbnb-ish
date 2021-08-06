@@ -253,7 +253,8 @@ const CardDiv = styled.div`
       display: block;
       margin-bottom: 1rem;
     }
-    .subtitle, .description {
+    .subtitle,
+    .description {
       display: flex;
     }
     .price {

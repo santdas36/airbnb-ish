@@ -78,11 +78,10 @@ export default function Header({ placeholder }) {
   const fixWidth = () => {
     if (navRef.current && navRef.current.offsetWidth > 100) {
       setNavWidth(navRef.current.offsetWidth);
-    }
-    else {
+    } else {
       setNavWidth(400);
     }
-  }
+  };
 
   useEffect(() => {
     window.addEventListener("resize", fixWidth);
@@ -113,7 +112,7 @@ export default function Header({ placeholder }) {
       navWidth={navWidth}
     >
       <div className="headerInner">
-        <div className="logo" onClick={() => router.push('/')} >
+        <div className="logo" onClick={() => router.push("/")}>
           <svg
             viewBox="0 0 256 276"
             xmlns="http://www.w3.org/2000/svg"

@@ -26,16 +26,20 @@ export default function SearchResults({ results }) {
             <ResultCard {...item} imgSrc={resultImages[index]} key={index} />
           ))}
         </div>
-        
+
         <div className="navigation">
-          <button className="prev" aria-label="previous"><ArrowLeft/></button>
+          <button className="prev" aria-label="previous">
+            <ArrowLeft />
+          </button>
           <span className="active">1</span>
           <span>2</span>
           <span>3</span>
           ...
           <span>8</span>
           <span>9</span>
-          <button className="next" aria-label="next"><ArrowRight/></button>
+          <button className="next" aria-label="next">
+            <ArrowRight />
+          </button>
         </div>
       </div>
     </ResultsDiv>
@@ -56,7 +60,8 @@ const ResultsDiv = styled.section`
     display: flex;
     padding-top: 1.5rem;
     align-items: center;
-    button, span {
+    button,
+    span {
       background: var(--gray);
       border: none;
       border-radius: 99px;
@@ -65,7 +70,8 @@ const ResultsDiv = styled.section`
       width: 3rem;
       height: 3rem;
       outline: none;
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         box-shadow: 0 0 0 1px var(--dark);
       }
     }
@@ -74,7 +80,7 @@ const ResultsDiv = styled.section`
       height: 2rem;
       margin: 0 0.75rem;
       user-select: none;
-      
+
       @media (max-width: 36rem) {
         display: none;
       }
@@ -83,7 +89,7 @@ const ResultsDiv = styled.section`
         color: var(--light);
       }
     }
-    
+
     button.prev {
       margin-right: auto;
     }
