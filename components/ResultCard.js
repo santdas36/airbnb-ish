@@ -191,6 +191,7 @@ const CardDiv = styled.div`
   .rating {
     display: flex;
     align-items: center;
+    width: fit-content;
     margin-bottom: 0.25rem;
     small {
       color: #889;
@@ -240,16 +241,13 @@ const CardDiv = styled.div`
 
   @media (min-width: 48rem) {
     display: flex;
-
     gap: 1.5rem;
+
     .carousel {
       flex: 0 0 300px;
     }
-
     .details {
       padding-right: 1rem;
-      display: flex;
-      flex-direction: column;
     }
     .description {
       display: block;
@@ -260,6 +258,7 @@ const CardDiv = styled.div`
     }
     .price {
       display: flex;
+      width: 100%;
       flex-direction: column;
       align-items: flex-end;
       & .total {
