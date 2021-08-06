@@ -134,7 +134,7 @@ const Container = styled.div`
 
   .close {
     position: absolute;
-    top: -0.5rem;
+    top: 0;
     right: 0.5rem;
     background: none;
     border: none;
