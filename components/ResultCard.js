@@ -33,7 +33,7 @@ export default function SearchResults({
     <CardDiv>
       <div ref={imagesRef} className="carousel">
         {imgSrc?.map((url, index) => (
-          <ImageComponent index={index} url={url} location={location} />
+          <ImageComponent key={index} url={url} location={location} />
         ))}
       </div>
       {imgSrc?.length > 1 && (
@@ -75,7 +75,7 @@ const ImageComponent = ({ index, url, location }) => {
   const [loading, setLoading] = useState(true);
 
   return (
-    <div key={index} className={`img ${loading ? "loading" : null}`}>
+    <div className={`img ${loading ? "loading" : null}`}>
       <Image
         layout="fill"
         alt={location}
