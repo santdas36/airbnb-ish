@@ -12,7 +12,6 @@ export default function Header({ placeholder }) {
   const navRef = useRef(null);
   const headerRef = useRef(null);
   const [scrolled, setScrolled] = useState(false);
-  const [navWidth, setNavWidth] = useState(false);
   const [inputFocus, setInputFocus] = useState(false);
   const primaryLocationRef = useRef(null);
   const secondaryLocationRef = useRef(null);
@@ -75,21 +74,7 @@ export default function Header({ placeholder }) {
     return () => document.removeEventListener("click", handleClick);
   }, []);
 
-  const fixWidth = () => {
-    if (navRef.current && navRef.current.offsetWidth > 100) {
-      setNavWidth(navRef.current.offsetWidth);
-    } else {
-      setNavWidth(400);
-    }
-  };
-
   useEffect(() => {
-    window.addEventListener("resize", fixWidth);
-    return () => window.removeEventListener("resize", fixWidth);
-  }, []);
-
-  useEffect(() => {
-    fixWidth();
     const onScroll = () => {
       if (window.scrollY > 10) {
         setScrolled(true);
@@ -109,7 +94,6 @@ export default function Header({ placeholder }) {
         scrolled || inputFocus || router.pathname !== "/" ? "scrolled" : null,
         inputFocus ? "inputFocus" : null,
       ]}
-      navWidth={navWidth}
     >
       <div className="headerInner">
         <div className="logo" onClick={() => router.push("/")}>
@@ -539,7 +523,7 @@ const HeaderSection = styled.header`
     form {
       box-shadow: 0 0 0 2px #0002;
       transform: translate(-50%, 0.125rem) scale(0.83);
-      width: ${(props) => props.navWidth}px;
+      width: 480px;
       & > button {
         max-width: 3rem;
       }
