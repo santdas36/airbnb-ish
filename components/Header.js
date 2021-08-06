@@ -105,7 +105,7 @@ export default function Header({ placeholder }) {
       navWidth={navWidth}
     >
       <div className="headerInner">
-        <div className="logo">
+        <div className="logo" onClick={() => router.push('/')} >
           <svg
             viewBox="0 0 256 276"
             xmlns="http://www.w3.org/2000/svg"
@@ -358,6 +358,7 @@ const HeaderSection = styled.header`
     }
   }
   .logo {
+    cursor: pointer;
     svg {
       height: 2rem;
       color: var(--light);
