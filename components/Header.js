@@ -75,14 +75,22 @@ export default function Header({ placeholder }) {
     return () => document.removeEventListener("click", handleClick);
   }, []);
 
+  const fixWidth = () => {
+    if (navRef.current && navRef.current.offsetWidth > 100) {
+      setNavWidth(navRef.current.offsetWidth);
+    }
+    else {
+      setNavWidth(480);
+    }
+  }
+
   useEffect(() => {
-    const handleResize = () => setNavWidth(navRef.current.offsetWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener("resize", fixWidth);
+    return () => window.removeEventListener("resize", fixWidth);
   }, []);
 
   useEffect(() => {
-    setNavWidth(navRef.current.offsetWidth);
+    fixWidth();
     const onScroll = () => {
       if (window.scrollY > 10) {
         setScrolled(true);
