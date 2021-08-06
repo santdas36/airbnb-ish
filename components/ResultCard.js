@@ -240,6 +240,7 @@ const CardDiv = styled.div`
 
   @media (min-width: 48rem) {
     display: flex;
+
     gap: 1.5rem;
     .carousel {
       flex: 0 0 300px;
@@ -247,10 +248,15 @@ const CardDiv = styled.div`
 
     .details {
       padding-right: 1rem;
+      display: flex;
+      flex-direction: column;
     }
     .description {
       display: block;
       margin-bottom: 1rem;
+    }
+    .subtitle, .description {
+      display: flex;
     }
     .price {
       display: flex;
