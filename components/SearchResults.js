@@ -6,10 +6,24 @@ import ResultCard from "./ResultCard";
 import { resultImages } from "../data";
 import { ArrowLeft, ArrowRight } from "react-feather";
 
-export default function SearchResults({ results }) {
+export default function SearchResults({
+  results,
+  setViewport,
+  setSelectedLocation,
+}) {
   const router = useRouter();
   const checkInDate = format(new Date(router.query.checkIn), "do MMM, yyyy");
   const checkOutDate = format(new Date(router.query.checkOut), "do MMM, yyyy");
+
+  const setSelection = (data) => {
+    setSelectedLocation(data);
+    setViewport({ latitude: data.lat - 0.01, longitude: data.long, zoom: 11 });
+    console.log(data);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <ResultsDiv className="hero">
@@ -23,7 +37,14 @@ export default function SearchResults({ results }) {
 
         <div className="results">
           {results.map((item, index) => (
-            <ResultCard {...item} imgSrc={resultImages[index]} key={index} />
+            <ResultCard
+              onClick={() =>
+                setSelection({ lat: item.lat, long: item.long, index: index })
+              }
+              {...item}
+              imgSrc={resultImages[index]}
+              key={index}
+            />
           ))}
         </div>
 
@@ -48,11 +69,16 @@ export default function SearchResults({ results }) {
 
 const ResultsDiv = styled.section`
   height: fit-content;
-  padding: 7.5rem var(--sidePadding) 3rem;
+  padding: 3rem var(--sidePadding);
+  z-index: 1;
+  position: relative;
+  border-radius: 1.5rem 1.5rem 0 0;
+  box-shadow: 0 -1rem 2rem -1rem #0003;
+  background: var(--light);
+  max-width: calc(var(--containerWidth) + 2 * var(--sidePadding));
+  margin: 0 auto;
 
   .inner {
-    max-width: var(--containerWidth);
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
   }
@@ -80,6 +106,7 @@ const ResultsDiv = styled.section`
       height: 2rem;
       margin: 0 0.75rem;
       user-select: none;
+      cursor: pointer;
 
       @media (max-width: 36rem) {
         display: none;
@@ -124,8 +151,17 @@ const ResultsDiv = styled.section`
   }
 
   @media (max-width: 36rem) {
-    padding-top: 6rem;
-
+    &::before {
+      position: absolute;
+      content: "";
+      background: var(--dark);
+      width: 3rem;
+      height: 3px;
+      border-radius: 3px;
+      opacity: 0.25;
+      top: 0.75rem;
+      left: calc(50% - 1.5rem);
+    }
     .details {
       font-size: 0.85rem;
     }

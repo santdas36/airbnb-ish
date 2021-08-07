@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { Star, Heart } from "react-feather";
-export default function SearchResults({
+export default function ResultCard({
   imgSrc,
   location,
   title,
@@ -11,6 +11,7 @@ export default function SearchResults({
   total,
   price,
   lat,
+  onClick,
 }) {
   const [liked, setLiked] = useState(false);
   const imagesRef = useRef(null);
@@ -30,7 +31,7 @@ export default function SearchResults({
   }, []);
 
   return (
-    <CardDiv>
+    <CardDiv onClick={onClick}>
       <div ref={imagesRef} className="carousel">
         {imgSrc.map((url, index) => (
           <ImageComponent key={index} url={url} location={location} />
@@ -49,7 +50,10 @@ export default function SearchResults({
       )}
       <Heart
         className={`heart ${liked ? "liked" : null}`}
-        onClick={() => setLiked(!liked)}
+        onClick={(e) => {
+          e.stopPropagation();
+          setLiked(!liked);
+        }}
       />
 
       <div className="details">
@@ -90,6 +94,7 @@ const ImageComponent = ({ index, url, location }) => {
 const CardDiv = styled.div`
   border-radius: 1rem;
   position: relative;
+
   .carousel {
     position: relative;
     width: 100%;
