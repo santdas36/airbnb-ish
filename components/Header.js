@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { Search, Globe, Menu, Heart, User } from "react-feather";
+import { Search, Globe, Menu, User } from "react-feather";
 import Image from "next/image";
 import { useRef, useEffect, useState } from "react";
 import DatePicker from "./DatePicker";
 import ThemeToggle from "./ThemeToggle";
 import { useMediaQuery } from "@react-hook/media-query";
 import { useRouter } from "next/router";
-
+import MobileNav from "./MobileNav";
 export default function Header({ placeholder }) {
   const router = useRouter();
 
@@ -117,12 +117,7 @@ export default function Header({ placeholder }) {
           <a href="#">Experiences</a>
           <a href="#">Online Experiences</a>
         </nav>
-        <div className="mobileNav">
-          <Search className="active" />
-          <Heart />
-          <User />
-          <ThemeToggle icon />
-        </div>
+        <MobileNav />
         <form className="search">
           <input
             type="text"
@@ -472,32 +467,7 @@ const HeaderSection = styled.header`
     -moz-appearance: textfield;
   }
 
-  .mobileNav {
-    display: none;
-  }
-
   @media (max-width: 36rem) {
-    .mobileNav {
-      display: flex;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      align-items: center;
-      padding: 1rem 2.5rem;
-      justify-content: space-between;
-      gap: 1.5rem;
-      background: var(--white);
-      color: var(--dark);
-      border-top: 2px solid var(--gray);
-
-      svg {
-        cursor: pointer;
-      }
-      svg.active {
-        color: var(--red);
-      }
-    }
     .profile,
     .logo,
     nav,
