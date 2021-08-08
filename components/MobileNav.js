@@ -17,8 +17,8 @@ export default function MobileNav() {
         <span></span>
       </div>
       <div className="items">
-        <div className="item">
-          <Search className="active" /> Explore
+        <div className="item active">
+          <Search /> Explore
         </div>
         <div className="item">
           <Heart /> Wishlist
@@ -49,10 +49,10 @@ const MobileNavDiv = styled.div`
       opacity: 0;
       transform: translateX(3rem);
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.5rem;
       background: var(--dark);
       color: var(--light);
-      padding: 1rem 4.5rem 1rem 1rem;
+      padding: 1rem 1.5rem 1rem 0.75rem;
       border-radius: 1rem 0 0 1rem;
       box-shadow: 0.5rem 0.5rem 1rem #0005;
       position: fixed;
@@ -63,7 +63,17 @@ const MobileNavDiv = styled.div`
       .item {
         display: flex;
         align-items: center;
+        padding: 0.25rem 3rem 0.25rem 0.5rem;
+        border-radius: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
 
+        &:hover {
+          background: #88a2;
+        }
+        &.active {
+          color: var(--red);
+        }
         svg {
           margin-right: 1rem;
           width: 1.25rem;
@@ -112,13 +122,6 @@ const MobileNavDiv = styled.div`
           transform: translateY(6px);
         }
       }
-    }
-
-    svg {
-      cursor: pointer;
-    }
-    svg.active {
-      color: var(--red);
     }
 
     &.open {
