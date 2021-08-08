@@ -1,10 +1,12 @@
 import styled from "styled-components";
-import { Search, Heart, User } from "react-feather";
+import { Home, Search, Heart, User } from "react-feather";
 import ThemeToggle from "./ThemeToggle";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <MobileNavDiv className={isOpen ? "open" : null}>
@@ -17,7 +19,15 @@ export default function MobileNav() {
         <span></span>
       </div>
       <div className="items">
-        <div className="item active">
+        <div
+          onClick={() => router.push("/")}
+          className={`item ${router.pathname === "/" ? "active" : null}`}
+        >
+          <Home /> Home
+        </div>
+        <div
+          className={`item ${router.pathname === "/search" ? "active" : null}`}
+        >
           <Search /> Explore
         </div>
         <div className="item">
