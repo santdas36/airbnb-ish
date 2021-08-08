@@ -19,7 +19,7 @@ const ThemeToggle = ({ text, icon, className }) => {
 
   return (
     <Container
-      className={[className, "themeToggle"]}
+      className={`${className} themeToggle`}
       onClick={() => setIsDark(!isDark)}
     >
       {icon && (

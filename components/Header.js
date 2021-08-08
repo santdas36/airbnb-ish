@@ -371,7 +371,7 @@ const HeaderSection = styled.header`
       height: 1.15rem;
     }
     a,
-    div {
+    .themeToggle {
       margin-right: 1.5rem;
     }
     .userIcon {
