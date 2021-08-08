@@ -529,8 +529,11 @@ const HeaderSection = styled.header`
     .logo svg {
       color: var(--red);
     }
+    .user {
+      box-shadow: 0 0 0 2px var(--gray);
+    }
     form {
-      box-shadow: 0 0 0 2px #0002;
+      box-shadow: 0 0 0 2px var(--gray);
       transform: translate(-50%, 0.125rem) scale(0.83);
       width: 480px;
       & > button {

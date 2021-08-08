@@ -131,15 +131,14 @@ const MobileNavDiv = styled.div`
         background: var(--red);
 
         span {
-          width: 0;
-          background: #fff;
+          background: var(--red);
           &::before {
             background: #fff;
-            transform: translate(-0.75rem, 0) rotate(45deg);
+            transform: translate(0) rotate(45deg);
           }
           &::after {
             background: #fff;
-            transform: translate(-0.75rem, 0) rotate(-45deg);
+            transform: translate(0) rotate(-45deg);
           }
         }
       }
