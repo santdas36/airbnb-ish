@@ -33,6 +33,7 @@ export default function Map({
         {...viewport}
         width="100%"
         height="100%"
+        className="mapgl-container"
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
       >
         {results.map((result, index) => (
@@ -133,12 +134,13 @@ const MapContainer = styled.div`
     stroke: none;
     fill: var(--red);
     circle {
-      fill: var(--white);
+      fill: var(--gray);
     }
   }
   .mapboxgl-popup {
     z-index: 1;
   }
+
   .mapboxgl-popup-content {
     border-radius: 1rem;
     padding: 0;

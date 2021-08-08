@@ -39,11 +39,14 @@ export default function ResultCard({
       </div>
       {imgSrc?.length > 1 && (
         <div className="scroller">
-          {imgSrc.map((img, e) => (
+          {imgSrc.map((img, idx) => (
             <span
-              key={e}
-              className={currSlide === e ? "active" : null}
-              onClick={() => scrollToImage(e)}
+              key={idx}
+              className={currSlide === idx ? "active" : null}
+              onClick={(e) => {
+                e.stopPropagation();
+                scrollToImage(idx);
+              }}
             ></span>
           ))}
         </div>
@@ -159,13 +162,13 @@ const CardDiv = styled.div`
       display: block;
       width: 0.3rem;
       height: 0.3rem;
-      background: var(--white);
+      background: #fff;
       opacity: 0.5;
       transition: all 0.2s;
       margin: 1rem 0.25rem;
       border-radius: 50%;
       cursor: pointer;
-      box-shadow: 0 0.1rem 0.2rem var(--dark);
+      box-shadow: 0 0.1rem 0.2rem #002;
     }
     span.active {
       opacity: 1;
@@ -186,7 +189,7 @@ const CardDiv = styled.div`
     right: 1rem;
     top: 1rem;
     transition: all 0.2s;
-    color: var(--white);
+    color: #fff;
     &.liked {
       stroke: var(--red);
       fill: var(--red);

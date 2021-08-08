@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <HeroSection className="hero">
+    <HeroSection className="light hero">
       <div className="heroInner">
         <span>
           <h1>Olympian & Paralympian Online Experiences</h1>

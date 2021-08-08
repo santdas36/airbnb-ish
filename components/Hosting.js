@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Hosting() {
   return (
-    <HostingSection>
+    <HostingSection className="light">
       <span>
         <h2>Try hosting</h2>
         <p>

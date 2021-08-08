@@ -18,6 +18,23 @@
   --maxWidth: 40%;
   --containerWidth: 1200px;
 }
+body.dark {
+  --dark: #fafafc;
+  --white: #112;
+  --light: #1e1e38;
+  --gray: #002;
+}
+body.dark section.light {
+  --light: #fafafc;
+  --dark: #2e2e48;
+}
+body.dark .mapboxgl-popup {
+  --dark: #2e2e48;
+  --white: #fff;
+}
+body.dark .mapgl-container {
+  filter: invert(100%) hue-rotate(180deg);
+}
 
 body {
   font-family: "Nunito Sans", sans-serif;

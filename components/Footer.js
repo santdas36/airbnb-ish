@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 import { Globe, DollarSign, Facebook, Twitter, Instagram } from "react-feather";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Footer() {
   return (
@@ -55,6 +56,9 @@ export default function Footer() {
           </ul>
         </span>
         <span className="footer-bottom">
+          <p>
+            <ThemeToggle text />
+          </p>
           <p>
             <span>
               <Globe className="globe" />

@@ -59,7 +59,7 @@ const InputDiv = styled.div`
   button {
     line-height: 1;
     border-radius: 99px;
-    background: #eff2f7;
+    background: var(--gray);
     color: var(--dark);
     padding: 0 1rem;
   }

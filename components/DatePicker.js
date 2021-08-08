@@ -164,10 +164,18 @@ const Container = styled.div`
   }
   .rdrDateDisplayItem {
     border-radius: 99px;
+    background-color: var(--light);
+    input {
+      color: var(--dark);
+    }
   }
   .rdrDefinedRangesWrapper {
     border: none;
     border-radius: 1rem;
+  }
+  .rdrCalendarWrapper {
+    background: none;
+    color: var(--dark);
   }
   .rdrStaticRange {
     border: none;
@@ -175,7 +183,7 @@ const Container = styled.div`
     &:hover,
     &:focus {
       .rdrStaticRangeLabel {
-        background: #eff2f7;
+        background: var(--gray);
       }
     }
   }
@@ -183,6 +191,13 @@ const Container = styled.div`
     margin-right: 1.5rem;
     padding-top: 0.75rem;
     background: var(--light);
+  }
+  .rdrDayNumber span {
+    color: var(--dark);
+  }
+  .rdrDayPassive .rdrDayNumber span {
+    color: var(--dark);
+    opacity: 0.33;
   }
   .rdrDayToday .rdrDayNumber span:after {
     background: var(--red);

@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { Search, Globe, Menu, User } from "react-feather";
+import { Search, Globe, Menu, Heart, User } from "react-feather";
 import Image from "next/image";
 import { useRef, useEffect, useState } from "react";
 import DatePicker from "./DatePicker";
+import ThemeToggle from "./ThemeToggle";
 import { useMediaQuery } from "@react-hook/media-query";
 import { useRouter } from "next/router";
 
@@ -116,7 +117,12 @@ export default function Header({ placeholder }) {
           <a href="#">Experiences</a>
           <a href="#">Online Experiences</a>
         </nav>
-
+        <div className="mobileNav">
+          <Search className="active" />
+          <Heart />
+          <User />
+          <ThemeToggle icon />
+        </div>
         <form className="search">
           <input
             type="text"
@@ -200,6 +206,7 @@ export default function Header({ placeholder }) {
 
         <div className="profile">
           <a href="#">Become a host</a>
+          <ThemeToggle icon />
           <a href="#" className="globe">
             <Globe />
           </a>
@@ -216,7 +223,7 @@ export default function Header({ placeholder }) {
 const HeaderSection = styled.header`
   position: fixed;
   top: 0;
-  color: var(--light);
+  color: #fafafc;
   padding: 1.5rem var(--sidePadding);
   width: 100%;
   z-index: 10;
@@ -353,7 +360,7 @@ const HeaderSection = styled.header`
     cursor: pointer;
     svg {
       height: 2rem;
-      color: var(--light);
+      color: #fafafc;
       transition: color 0.2s;
     }
     span {
@@ -368,23 +375,24 @@ const HeaderSection = styled.header`
     svg {
       height: 1.15rem;
     }
-    a {
+    a,
+    div {
       margin-right: 1.5rem;
     }
     .userIcon {
-      background: var(--dark);
+      background: #2e2e48;
       border-radius: 99px;
       height: 1.5rem;
       width: 1.5rem;
-      color: var(--light);
+      color: #fafafc;
     }
     .user {
-      background: var(--light);
+      background: #fafafc;
       border-radius: 99px;
       padding: 0.25rem 0.25rem 0.25rem 0.5rem;
     }
     .menu {
-      color: var(--dark);
+      color: #2e2e48;
       margin-right: 0.5rem;
     }
   }
@@ -402,7 +410,7 @@ const HeaderSection = styled.header`
     max-width: 720px;
     margin: 1.5rem 0;
     width: 60vw;
-    box-shadow: 0 1rem 3rem -1rem var(--dark);
+    box-shadow: 0 1rem 3rem -1rem #1e1e38;
     transition: all 0.2s;
     transform-origin: center;
 
@@ -426,7 +434,7 @@ const HeaderSection = styled.header`
     }
     & > button {
       background: var(--red);
-      color: var(--light);
+      color: #fafafc;
       border: none;
       padding: 0.5rem calc(1.75rem / 2);
       height: 3rem;
@@ -464,7 +472,32 @@ const HeaderSection = styled.header`
     -moz-appearance: textfield;
   }
 
+  .mobileNav {
+    display: none;
+  }
+
   @media (max-width: 36rem) {
+    .mobileNav {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      align-items: center;
+      padding: 1rem 2.5rem;
+      justify-content: space-between;
+      gap: 1.5rem;
+      background: var(--white);
+      color: var(--dark);
+      border-top: 2px solid var(--gray);
+
+      svg {
+        cursor: pointer;
+      }
+      svg.active {
+        color: var(--red);
+      }
+    }
     .profile,
     .logo,
     nav,

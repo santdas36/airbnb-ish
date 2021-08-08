@@ -82,7 +82,7 @@ const ExploreSection = styled.section`
       }
     }
     &:hover {
-      background: #fff;
+      background: var(--white);
       box-shadow: 0 0.25rem 0.5rem #48484810;
 
       img.shadow {
