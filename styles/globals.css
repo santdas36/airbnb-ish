@@ -123,13 +123,13 @@ section h2 {
 
 @media (min-width: 48rem) {
   html {
-    font-size: 18px;
+    font-size: 17px;
   }
 }
 
 @media (min-width: 81rem) {
   html {
-    font-size: 20px;
+    font-size: 18px;
   }
   section:not(.hero) {
     width: 1200px;
